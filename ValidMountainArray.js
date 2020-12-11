@@ -1,3 +1,5 @@
+// https://leetcode.com/explore/challenge/card/december-leetcoding-challenge/570/week-2-december-8th-december-14th/3561/
+
 /* Valid Mountain Array
 Given an array of integers arr, return true if and only if it is a valid mountain array.
 
@@ -55,28 +57,23 @@ function validMountainArray(arr) {
 console.log(validMountainArray(arr));
 
 
-
+// another option that's also linear, didn't seem to necessarily perform better in leetCode
 function validMountainArray2(arr) {
     const length = arr.length
     if (length < 3 || arr[0] >= arr[1]) return false;
 
-    let leftPeak = 0;
-    let rightPeak = length - 1;
-    let oldLeftPeak;
-    let oldRightPeak;
+    let leftPeak = 0, rightPeak = length - 1;
+    let oldLeftPeak, oldRightPeak;
 
-    // while (leftPeak <= rightPeak && (oldLeftPeak !== leftPeak || oldRightPeak !== rightPeak)) {
     while (oldLeftPeak !== leftPeak || oldRightPeak !== rightPeak) {
-        oldLeftPeak = leftPeak;
-        oldRightPeak = rightPeak;
+        oldLeftPeak = leftPeak, oldRightPeak = rightPeak;
 
-        let nextFromLeftPeak = leftPeak + 1
-        let nextFromRightPeak = rightPeak - 1
+        let nextFromLeftPeak = leftPeak + 1, nextFromRightPeak = rightPeak - 1
 
         if (arr[leftPeak] < arr[nextFromLeftPeak]) leftPeak = nextFromLeftPeak;
         if (arr[rightPeak] < arr[nextFromRightPeak]) rightPeak = nextFromRightPeak;
     }
-    return leftPeak === rightPeak && (rightPeak !== 0 && leftPeak !== length - 1) ? true : false;
+    return leftPeak === rightPeak && (rightPeak !== 0 && leftPeak !== length - 1)
 }
 
 console.log(validMountainArray2(arr));
