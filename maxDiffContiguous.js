@@ -20,6 +20,7 @@ const testArr3 = [1, 2, 6, -7, -9, 7, 8, 6];
 const testArr4 = [4, -9, 1, 5, -9, 7, -8, 6, 5, 3, -9, 1, 0, 7, -2, -6];
 const testArr5 = [1, 3, 1];
 
+// first attempt, not done correctly
 
 function maxDiffContiguousArrs(arr) {
     let diffsTable = new Array(arr.length - 1).fill(-Infinity)
@@ -45,7 +46,10 @@ function maxDiffContiguousArrs(arr) {
 // console.log(maxDiffContiguousArrs(testArr2))
 // console.log(maxDiffContiguousArrs(testArr3))
 // console.log(maxDiffContiguousArrs(testArr4))
+
 // // // // // this one above didn't work because it's assuming all numbers have to be used // // // // //
+
+
 
 // to do it with a time complexity of O(2n) I need to have two tables
 
