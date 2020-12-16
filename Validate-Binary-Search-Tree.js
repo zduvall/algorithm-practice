@@ -1,3 +1,5 @@
+// https://leetcode.com/problems/validate-binary-search-tree/submissions/
+
 /*
 Validate Binary Search Tree
 Given the root of a binary tree, determine if it is a valid binary search tree (BST).
@@ -58,7 +60,10 @@ const n6 = new TreeNode(6, n3, n7);
 const n4 = new TreeNode(4);
 const n5 = new TreeNode(5, n4, n6);
 
-function isValidBST (root, arr = [-Infinity], bstStatus = [true]) {
+// here's the solution I came up with, ranged from 26% - 89%, time complexity is linear - O(n)
+// because it just hits every node once
+
+function isValidBST(root, arr = [-Infinity], bstStatus = [true]) {
     if (!root) return;
     isValidBST(root.left, arr, bstStatus);
     if (root.val <= arr[0]) {
