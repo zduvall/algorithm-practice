@@ -49,13 +49,13 @@ Could you solve this efficiently without using extra space?
  * @param {ListNode} head
  */
 var Solution = function(head) {
-    this.count = 0
-    this.map = {}
+    this.count = 0;
+    this.map = {};
     
-    let curr = head
-    while(curr){
-        this.map[this.count] = curr.val
-        curr = curr.next
+    let cur = head;
+    while(cur){
+        this.map[this.count] = cur.val
+        cur = cur.next
         this.count++
     }
 };
