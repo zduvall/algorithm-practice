@@ -63,16 +63,16 @@ const n5 = new TreeNode(5, n4, n6);
 // here's the solution I came up with, ranged from 26% - 89%, time complexity is linear - O(n)
 // because it just hits every node once
 
-function isValidBST(root, arr = [-Infinity], bstStatus = [true]) {
-    if (!root) return;
-    isValidBST(root.left, arr, bstStatus);
+function isValidBST(root, arr = [-Infinity], isBST = [true]) {
+    if (!root || isBST[0] === false) return;
+    isValidBST(root.left, arr, isBST);
     if (root.val <= arr[0]) {
-        bstStatus[0] = false;
+        isBST[0] = false;
     } else {
         arr[0] = root.val;
     }
-    isValidBST(root.right, arr, bstStatus);
-    return bstStatus[0];
+    isValidBST(root.right, arr, isBST);
+    return isBST[0];
 };
 
 console.log(isValidBST(five));
