@@ -49,52 +49,61 @@ var solution = function (isBadVersion) {
      * @param {integer} n Total versions
      * @return {integer} The first bad version
      */
-    return function checker(n, vers = { start: n }) {
-        if (vers[1] === 'bad') return 1
-        // let mid = Math.ceil(n / 2);
-        vers[n] = isBadVersion(n) ? 'bad' : 'good';
-        if (vers[n] && vers[n - 1] && vers[n] !== vers[n - 1]) return n;
-        if (vers[n] && vers[n + 1] && vers[n] !== vers[n + 1]) return n + 1;
-        return vers[n] === 'bad' ?
-            checker(Math.ceil(n / 2), vers) : checker(Math.ceil((n / 2 + vers.start / 2)), vers);
+    return function checker(n, lowHi = [0, n]) {
+        // if (vers[1] === 'bad') return 1
+        if (lowHi[1] - lowHi[0] === 1) return lowHi[1]
+        if (n === 1) return 1
+        let mid = Math.ceil((lowHi[0] + lowHi[1]) / 2);
+        if (isBadVersion(mid)) {
+            lowHi[1] = mid;
+        } else {
+            lowHi[0] = mid;
+        }
+        return checker(mid, lowHi);
     };
 
 };
 
 
 
-// I made this up below to pretend to be the api they're sending into the function.
-// I think I got it to work, but leet code is showing I only passed 11. At that point
-// it's saying my code takes too long
+
+
+// Below is what I wrote so I could test this here. See comments below for more instructions
+
 function isBadVersion(n) {
-    // let arr = [null, false, false, false, false, false, false, false, true, true, true]
-    // let arr = [null, true]
-    let arr = [null, false, false, false, true, true]
-    // let arr = [null, false, true]
-    return arr[n]
+    return n >= 2
 }
 
-function checker(n, vers = { start: n }) {
-    if (vers[1] === 'bad') return 1
-    // let mid = Math.ceil(n / 2);
-    vers[n] = isBadVersion(n) ? 'bad' : 'good';
-    if (vers[n] && vers[n - 1] && vers[n] !== vers[n - 1]) return n;
-    if (vers[n] && vers[n + 1] && vers[n] !== vers[n + 1]) return n + 1;
-    return vers[n] === 'bad' ?
-        checker(Math.ceil(n / 2), vers) : checker(Math.ceil((n / 2 + vers.start / 2)), vers);
+// Passed with recursion
+function checker(n, lowHi = [0, n]) {
+    // if (vers[1] === 'bad') return 1
+    if (lowHi[1] - lowHi[0] === 1) return lowHi[1]
+    if (n === 1) return 1
+    let mid = Math.ceil((lowHi[0] + lowHi[1]) / 2);
+    if (isBadVersion(mid)) {
+        lowHi[1] = mid;
+    } else {
+        lowHi[0] = mid;
+    }
+    return checker(mid, lowHi);
 };
+
+// // note whatever I have to let right (in the comment below) needs to be at 
+// the end of the isBadVersion return line
 
 // console.log(checker(10)); // 8
 // console.log(checker(1)); // 1
-console.log(checker(5)); // 5
-// console.log(checker(2)); // 2
+// console.log(checker(5)); // 5
+// console.log(checker(400)); // 300
+console.log(checker(2)); // 2
 
 
 
 
 
 
-// // Okay, here's a non-recursive attempt. I had to check their solution
+
+// // And here's a non-recursive solution. I had to check their solution
 
 var solution = function (isBadVersion) {
     /**
