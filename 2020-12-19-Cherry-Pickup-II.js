@@ -74,8 +74,7 @@ const cherryPickup = function (grid) {
         if (cache[key]) return cache[key]
 
         let curr = grid[row][rob1] + (grid[row][rob2] * (rob1 !== rob2))
-
-        let currMax = 0;
+        let currMax = -1; // because everything will be 0 or bigger (I could have done -Infinity, or even just 0)
 
         for (let i = -1; i <= 1; i++) for (let j = -1; j <= 1; j++) // same as second one nested in first
             currMax = Math.max(currMax, curr + recur(row + 1, rob1 + i, rob2 + j))
