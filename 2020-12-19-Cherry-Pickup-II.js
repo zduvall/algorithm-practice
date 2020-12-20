@@ -80,7 +80,7 @@ const cherryPickup = function (grid) {
         for (let i = -1; i <= 1; i++) for (let j = -1; j <= 1; j++)
             currMax = Math.max(currMax, curr + recur(row + 1, rob1 + i, rob2 + j))
                 
-        return cache[key] = currMax
+        return cache[key] = currMax // this is the same as setting the cache[key] to curMax and then return cache[key]
     }
     return recur(0, 0, totCols)
 };
