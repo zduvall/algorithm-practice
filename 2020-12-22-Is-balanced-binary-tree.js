@@ -58,5 +58,5 @@ const isBalanced = function (root) {
         return Math.max(left, right);
     }
 
-    return dfs(root) == Infinity ? false : true;
+    return dfs(root) === Infinity ? false : true;
 };
