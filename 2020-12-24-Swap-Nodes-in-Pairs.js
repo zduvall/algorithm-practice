@@ -40,8 +40,7 @@ const swapPairs = function (head) {
 
     let i = 1;
     let node = head;
-    let prevNode;
-    let prevPrevNode;
+    let prevNode, prevPrevNode;
 
     while (node) {
         if (i % 2 === 0) {
