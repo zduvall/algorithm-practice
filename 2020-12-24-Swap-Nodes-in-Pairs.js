@@ -34,8 +34,7 @@ The number of nodes in the list is in the range [0, 100].
  * @return {ListNode}
  */
 const swapPairs = function (head) {
-    if (!head) return head;
-    if (!head.next) return head;
+    if (!head || !head.next) return head;
 
     let newHead = head.next;
 
@@ -46,7 +45,7 @@ const swapPairs = function (head) {
 
     while (node) {
         if (i % 2 === 0) {
-            if(prevPrevNode) prevPrevNode.next = node;
+            if (prevPrevNode) prevPrevNode.next = node;
             prevNode.next = node.next;
             node.next = prevNode;
             node = prevNode.next;
