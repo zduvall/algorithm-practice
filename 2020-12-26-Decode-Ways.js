@@ -39,6 +39,25 @@ s contains only digits and may contain leading zero(s).
 * @param {string} s
 * @return {number}
 */
-const numDecodings = function (s) {
 
+const numDecodings = function (s, i = 0) {
+    if (i === s.length) return 1;
+
+    let oneNum = s[i] !== '0' ? Number(s[i]) : false;
+    let twoNums = s[i + 1] && s[i] !== '0' ? Number(s[i] + s[i + 1]) : false;
+
+    let take1 = (1 <= oneNum && oneNum <= 26) ? numDecodings(s, i + 1) : 0;
+    let take2 = (1 <= twoNums && twoNums <= 26) ? numDecodings(s, i + 2) : 0;
+
+    return take1 + take2;
 };
+
+// console.log(numDecodings('12')); // 2
+// console.log(numDecodings('226')); // 3
+// console.log(numDecodings('0')); // 0
+// console.log(numDecodings('1')); // 1
+// console.log(numDecodings('27')); // 1
+// console.log(numDecodings('2101')); // 1
+console.log(numDecodings('111111111111111111111111111111111111111111111')); // 1
+
+// recursion took too long... I think I need to use tabulation
