@@ -59,10 +59,10 @@ const findDiagonalOrder = function (matrix) {
         if (row !== 0 && col !== cols) upRight();
     }
     
-    // handle edge case of a matrix with only a single column
+    // handle edge case of a matrix with multiple rows and only a single column
     if (matrix[0].length === 1) {
         while (row < rows) downOne();
-        return arr
+        return arr;
     }
 
     // move one to the right to begin the traversal
