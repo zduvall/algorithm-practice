@@ -75,7 +75,7 @@ const node5 = new TreeNode(5, node4, node6);
 // node is greater than the previously visited node.
 
 function isValidBST(root, prvNd = { val: -Infinity }, BST = { status: true }) {
-    if (!root || BST.status === false) return;
+    if (!root || !BST.status) return;
 
     isValidBST(root.left, prvNd, BST);
 
