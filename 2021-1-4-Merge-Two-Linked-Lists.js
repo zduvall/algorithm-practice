@@ -40,21 +40,39 @@ function ListNode(val, next) {
   this.next = (next === undefined ? null : next)
 }
 
+// (musste Antworten fuer alle beide nachschlagen)
+
+// // recursively
 const mergeTwoLists = function (l1, l2) {
-  if (!l1) {
-    return l2;
-  }
-  else if (!l2) {
-    return l1;
-  }
-  else if (l1.val < l2.val) {
+  if (!l1) return l2;
+  if (!l2) return l1;
+
+  if (l1.val < l2.val) {
     l1.next = mergeTwoLists(l1.next, l2);
     return l1;
-  }
-  else {
+  } else {
     l2.next = mergeTwoLists(l1, l2.next);
     return l2;
   }
+}
+
+// // iteratively
+const mergeTwoLists = function (l1, l2) {
+  const nodeB4ans = new ListNode();
+  let prvNode = nodeB4ans;
+
+  while (l1 && l2) {
+    if (l1.val < l2.val) {
+      prvNode.next = l1;
+      l1 = l1.next;
+    } else {
+      prvNode.next = l2;
+      l2 = l2.next;
+    }
+    prvNode = prvNode.next;
+  }
+  prvNode.next = !l1 ? l2 : l1
+  return nodeB4ans.next;
 }
 
 
