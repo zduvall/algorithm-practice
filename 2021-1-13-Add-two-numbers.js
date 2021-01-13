@@ -39,39 +39,42 @@ It is guaranteed that the list represents a number that does not have leading ze
  * @return {ListNode}
  */
 
+ //ended up having to look up a solution for this, because mine couldn't turn large numbers into strings or vice versa
+
 function ListNode(val, next) {
   this.val = (val === undefined ? 0 : val)
   this.next = (next === undefined ? null : next)
 }
 
 const addTwoNumbers = function (l1, l2) {
+  let list = new ListNode(0);
+  let head = list;
+  let sum = 0, carry = 0;
 
-  let num1 = [l1.val]
-  let num2 = [l2.val]
+  while (l1 || l2 || sum > 0) {
 
-  while (l1.next) {
-    num1.push(l1.next.val);
-    l1 = l1.next;
+    if (l1) {
+      sum += l1.val;
+      l1 = l1.next;
+    }
+    if (l2) {
+      sum += l2.val;
+      l2 = l2.next;
+    }
+    if (sum >= 10) {
+      carry = 1;
+      sum = sum - 10;
+    }
+
+    head.next = new ListNode(sum);
+    head = head.next;
+
+    sum = carry;
+    carry = 0;
+
   }
 
-  while (l2.next) {
-    num2.push(l2.next.val);
-    l2 = l2.next;
-  }
-
-  num1 = Number(num1.reverse().join(''));
-  num2 = Number(num2.reverse().join(''));
-
-  let num3 = String(num1 + num2)
-
-  let node = null;
-
-  for (let i = 0; i < num3.length; i++) {
-    let val = Number(num3[i])
-    node = new ListNode(val, node)
-  }
-
-  return node
+  return list.next;
 };
 
 // Input: l1 = [2, 4, 3], l2 = [5, 6, 4]
