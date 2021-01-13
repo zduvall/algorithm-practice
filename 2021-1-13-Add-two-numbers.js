@@ -46,27 +46,27 @@ function ListNode(val, next) {
 
 const addTwoNumbers = function (l1, l2) {
 
-  let num1 = `${l1.val}`
-  let num2 = `${l2.val}`
+  let num1 = [l1.val]
+  let num2 = [l2.val]
 
   while (l1.next) {
-    num1 += l1.next.val;
+    num1.push(l1.next.val);
     l1 = l1.next;
   }
 
   while (l2.next) {
-    num2 += l2.next.val;
+    num2.push(l2.next.val);
     l2 = l2.next;
   }
 
-  let num3 = String(Number(num1) + Number(num2))
-  let node = null;
-  
-  console.log(num1);
-  console.log(num2);
-  console.log(num3);
+  num1 = Number(num1.reverse().join(''));
+  num2 = Number(num2.reverse().join(''));
 
-  for (let i = num3.length - 1; i >= 0; i--) {
+  let num3 = String(num1 + num2)
+
+  let node = null;
+
+  for (let i = 0; i < num3.length; i++) {
     let val = Number(num3[i])
     node = new ListNode(val, node)
   }
@@ -86,3 +86,45 @@ const n5 = new ListNode(6, n6)
 const n4 = new ListNode(5, n5)
 
 console.log(addTwoNumbers(n1, n4));
+
+// Input:
+// [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1]
+// [5, 6, 4]
+// Expected:
+// [6, 6, 4, 0, 0, 1]
+
+const node29 = new ListNode(1);
+const node28 = new ListNode(0, node29);
+const node27 = new ListNode(0, node28);
+const node26 = new ListNode(0, node27);
+const node25 = new ListNode(0, node26);
+const node24 = new ListNode(0, node25);
+const node23 = new ListNode(0, node24);
+const node22 = new ListNode(0, node23);
+const node21 = new ListNode(0, node22);
+const node20 = new ListNode(0, node21);
+const node19 = new ListNode(0, node20);
+const node18 = new ListNode(0, node19);
+const node17 = new ListNode(0, node18);
+const node16 = new ListNode(0, node17);
+const node15 = new ListNode(0, node16);
+const node14 = new ListNode(0, node15);
+const node13 = new ListNode(0, node14);
+const node12 = new ListNode(0, node13);
+const node11 = new ListNode(0, node12);
+const node10 = new ListNode(0, node11);
+const node9 = new ListNode(0, node10);
+const node8 = new ListNode(0, node9);
+const node7 = new ListNode(0, node8);
+const node6 = new ListNode(0, node7);
+const node5 = new ListNode(0, node6);
+const node4 = new ListNode(0, node5);
+const node3 = new ListNode(0, node4);
+const node2 = new ListNode(0, node3);
+const node1 = new ListNode(1, node2);
+
+const node03 = new ListNode(4);
+const node02 = new ListNode(6, node03)
+const node01 = new ListNode(5, node02)
+
+console.log(addTwoNumbers(node1, node01));
