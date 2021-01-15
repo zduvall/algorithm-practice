@@ -60,36 +60,36 @@ Could you solve this problem in constant space complexity with a linear time alg
  * @return {Node}
  */
 // const findRoot = function (tree) {
-//     const nodes = new Map();
+//     const parents = new Map();
 //     let children = new Map();
 
 //     for (let i = 0; i < tree.length; i++) {
 //         const curNode = tree[i];
 //         const curChildren = tree[i].children
-//         if (!nodes.has(curNode) && !children.has(curNode)) nodes.set(curNode, "good")
+//         if (!parents.has(curNode) && !children.has(curNode)) parents.set(curNode, "good")
 //         curChildren.forEach(child => {
-//             nodes.delete(child)
+//             parents.delete(child)
 //             children.set(child, "bad")
 //         })
 //     }
-//     nodesIter = nodes[Symbol.iterator]()
-//     return nodesIter.next().value[0]
+//     parentsIter = parents[Symbol.iterator]()
+//     return parentsIter.next().value[0]
 // };
 
 
 const findRoot = function (tree) {
-    const nodes = new Set();
+    const parents = new Set();
     let children = new Set();
 
     for (let i = 0; i < tree.length; i++) {
         const curNode = tree[i];
         const curChildren = tree[i].children
-        if (!nodes.has(curNode) && !children.has(curNode)) nodes.add(curNode)
+        if (!parents.has(curNode) && !children.has(curNode)) parents.add(curNode)
         curChildren.forEach(child => {
-            nodes.delete(child)
+            parents.delete(child)
             children.add(child)
         })
     }
     
-    return [...nodes][0]
+    return [...parents][0]
 };
