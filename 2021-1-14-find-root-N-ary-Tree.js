@@ -59,23 +59,13 @@ Could you solve this problem in constant space complexity with a linear time alg
  * @param {Node[]} tree
  * @return {Node}
  */
-// const findRoot = function (tree) {
-//     const parents = new Map();
-//     let children = new Map();
 
-//     for (let i = 0; i < tree.length; i++) {
-//         const curNode = tree[i];
-//         const curChildren = tree[i].children
-//         if (!parents.has(curNode) && !children.has(curNode)) parents.set(curNode, "good")
-//         curChildren.forEach(child => {
-//             parents.delete(child)
-//             children.set(child, "bad")
-//         })
-//     }
-//     parentsIter = parents[Symbol.iterator]()
-//     return parentsIter.next().value[0]
-// };
+// Each node is only visited at most twice here (except the root), making a time 
+// complexity of O(n + n - 1), simplifies to O(n).
 
+// Keep a set of all parent nodes(parents).For every child node you encounter remove 
+// it from parents and add it into children.By the end there should only be one node 
+// in parents.Return that node.
 
 const findRoot = function (tree) {
     const parents = new Set();
@@ -93,3 +83,27 @@ const findRoot = function (tree) {
     
     return [...parents][0]
 };
+
+// using some math, same time complexity, O(n + n - 1 + n), simplifies to O(n), but constant space complexity
+
+const findRoot = function (tree) {
+    let sum = 0;
+
+    for (let i = 0; i < tree.length; i++) {
+        sum += tree[i].val;
+        const curChildren = tree[i].children
+        
+        curChildren.forEach(child => {
+            sum -= child.val
+        })
+    }
+
+    let root;
+
+    tree.forEach(node => {
+        if (node.val === sum) root = node;
+    })
+
+    return root
+};
+
