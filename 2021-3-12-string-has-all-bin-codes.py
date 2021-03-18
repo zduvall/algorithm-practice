@@ -67,3 +67,5 @@ print(solution.hasAllCodes("00110", 2))  # true
 print(solution.hasAllCodes("0110", 1))  # true
 print(solution.hasAllCodes("0110", 2))  # false
 print(solution.hasAllCodes("0000000001011100", 4))  # false
+
+
