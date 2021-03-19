@@ -27,27 +27,45 @@
 # s and t consist of any valid ascii character.
 
 
+# class Solution:
+#     def isIsomorphic(self, s: str, t: str) -> bool:
+#         if len(s) != len(t):
+#             return False
+#         mapDict = {}
+#         for i in range(0, len(s)):
+#             if (s[i] in mapDict and mapDict[s[i]] != t[i]):
+#                 return False
+#             else:
+#                 mapDict[s[i]] = t[i]
+#         vals = list(mapDict.values())
+#         for val in vals:
+#             if vals.count(val) > 1:
+#                 return False
+#         return True
+
+
 class Solution:
     def isIsomorphic(self, s: str, t: str) -> bool:
         if len(s) != len(t):
             return False
-        mapDict = {}
+        dct1 = {}
+        dct2 = {}
         for i in range(0, len(s)):
-            if s[i] in mapDict and mapDict[s[i]] != t[i]:
+            if (s[i] in dct1 and dct1[s[i]] != t[i]) or (t[i] in dct2 and dct2[t[i]] != s[i]):
                 return False
             else:
-                mapDict[s[i]] = t[i]
-        vals = list(mapDict.values())
-        for val in vals:
-            if vals.count(val) > 1:
-                return False
+                dct1[s[i]] = t[i]
+                dct2[t[i]] = s[i]
         return True
 
 
 solution = Solution()
 
 
+solution = Solution()
+
+
 print(solution.isIsomorphic("egg", "add"))  # True
-print(solution.isIsomorphic("paper", "title"))  # False
-print(solution.isIsomorphic("kick", "side"))  # True
+print(solution.isIsomorphic("paper", "title"))  # True
+print(solution.isIsomorphic("kick", "side"))  # False
 print(solution.isIsomorphic("badc", "baba"))  # False
