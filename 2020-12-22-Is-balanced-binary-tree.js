@@ -41,7 +41,6 @@ The number of nodes in the tree is in the range [0, 5000].
  * @return {boolean}
  */
 
-// had to look at a solution online
 
 // basically, if the difference between left and right is ever more than one,
 // return infinity on that stack and return the max overall in the end (which would
