@@ -44,22 +44,27 @@
 #         return True
 
 
+# class Solution:
+#     def isIsomorphic(self, s: str, t: str) -> bool:
+#         if len(s) != len(t):
+#             return False
+#         dct1 = {}
+#         dct2 = {}
+#         for i in range(0, len(s)):
+#             s_el = s[i]
+#             t_el = t[i]
+#             if (s_el in dct1 and dct1[s_el] != t_el) or (
+#                 t_el in dct2 and dct2[t_el] != s_el
+#             ):
+#                 return False
+#             else:
+#                 dct1[s_el] = t_el
+#                 dct2[t_el] = s_el
+#         return True
+
 class Solution:
-    def isIsomorphic(self, s: str, t: str) -> bool:
-        if len(s) != len(t):
-            return False
-        dct1 = {}
-        dct2 = {}
-        for i in range(0, len(s)):
-            if (s[i] in dct1 and dct1[s[i]] != t[i]) or (t[i] in dct2 and dct2[t[i]] != s[i]):
-                return False
-            else:
-                dct1[s[i]] = t[i]
-                dct2[t[i]] = s[i]
-        return True
-
-
-solution = Solution()
+    def isIsomorphic(self, s, t):
+        return len(set(zip(s, t))) == len(set(s)) == len(set(t))
 
 
 solution = Solution()
