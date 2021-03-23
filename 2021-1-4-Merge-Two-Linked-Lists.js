@@ -35,13 +35,6 @@ Both l1 and l2 are sorted in non-decreasing order.
  * @return {ListNode}
  */
 
-function ListNode(val, next) {
-  this.val = (val === undefined ? 0 : val)
-  this.next = (next === undefined ? null : next)
-}
-
-// (musste Antworten fuer alle beide nachschlagen)
-
 // // recursively
 const mergeTwoLists = function (l1, l2) {
   if (!l1) return l2;
@@ -57,22 +50,25 @@ const mergeTwoLists = function (l1, l2) {
 }
 
 // // iteratively
-const mergeTwoLists = function (l1, l2) {
-  const nodeB4ans = new ListNode();
-  let prvNode = nodeB4ans;
-
-  while (l1 && l2) {
-    if (l1.val < l2.val) {
-      prvNode.next = l1;
-      l1 = l1.next;
-    } else {
-      prvNode.next = l2;
-      l2 = l2.next;
+const mergeTwoLists = (l1, l2) => {
+    if (!l1 || !l2) return l1 || l2;
+    
+    const resHead = {val: 0, next: null};
+    let cur = resHead;
+    
+    while (l1 && l2) {
+        if (l1.val <= l2.val) {
+            cur.next = l1;
+            l1 = l1.next;
+        } else {
+            cur.next = l2;
+            l2 = l2.next;
+        }
+        cur = cur.next;
     }
-    prvNode = prvNode.next;
-  }
-  prvNode.next = !l1 ? l2 : l1
-  return nodeB4ans.next;
+    cur.next = l1 || l2;
+    
+    return resHead.next;
 }
 
 
