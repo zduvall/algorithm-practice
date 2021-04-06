@@ -43,6 +43,8 @@
 #         return sum(range(n)[1::2]) if n % 2 == 0 else sum(range(n)[::2])
 
 
+# differt approach, incrementally simplifying:
+
 # class Solution:
 #     def minOperations(self, n: int) -> int:
 #         return (n // 2) ** 2 if n % 2 == 0 else (n // 2) * (n - n // 2)
