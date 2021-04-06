@@ -42,12 +42,20 @@
 #     def minOperations(self, n: int) -> int:
 #         return sum(range(n)[1::2]) if n % 2 == 0 else sum(range(n)[::2])
 
-import math
-
 
 # class Solution:
 #     def minOperations(self, n: int) -> int:
-#         return int(n / 2) ** 2 if n % 2 == 0 else (n // 2) * (n - n // 2)
+#         return (n // 2) ** 2 if n % 2 == 0 else (n // 2) * (n - n // 2)
+
+# class Solution:
+#     def minOperations(self, n: int) -> int:
+#         return n**2 // 4 if n % 2 == 0 else (n // 2) * (n - n // 2)
+
+# class Solution:
+#     def minOperations(self, n: int) -> int:
+#         return n**2 // 4 if n % 2 == 0 else 2 * n**2 // 4 - n**2 // 4
+
+# both sides can simplify to the same thing, which becomes just this below
 
 class Solution:
     def minOperations(self, n: int) -> int:
