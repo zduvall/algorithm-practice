@@ -35,6 +35,33 @@
  * @param {string} s
  * @return {boolean}
  */
+// const halvesAreAlike = function (s) {
+//   const vowels = {
+//     a: 1,
+//     e: 1,
+//     i: 1,
+//     o: 1,
+//     u: 1,
+//     A: 1,
+//     E: 1,
+//     I: 1,
+//     O: 1,
+//     U: 1,
+//   };
+
+//   let half1 = 0;
+//   let half2 = 0;
+//   const length = s.length;
+
+//   for (let i = 0; i < length / 2; i++) {
+//     // if (s[i] in vowels) half1++;
+//     // if (s[length - i - 1] in vowels) half2++;
+//     half1 += vowels[s[i]] || 0;
+//     half2 += vowels[s[length - i - 1]] || 0;
+//   }
+
+//   return half1 === half2;
+// };
 const halvesAreAlike = function (s) {
   const vowels = {
     a: 1,
@@ -49,18 +76,15 @@ const halvesAreAlike = function (s) {
     U: 1,
   };
 
-  let half1 = 0;
-  let half2 = 0;
+  let sum = 0;
   const length = s.length;
 
   for (let i = 0; i < length / 2; i++) {
-    // if (s[i] in vowels) half1++;
-    // if (s[length - i - 1] in vowels) half2++;
-    half1 += vowels[s[i]] || 0;
-    half2 += vowels[s[length - i - 1]] || 0;
+    sum += vowels[s[i]] || 0;
+    sum -= vowels[s[length - i - 1]] || 0;
   }
 
-  return half1 === half2;
+  return sum === 0;
 };
 
 console.log(halvesAreAlike('book')); // => True
