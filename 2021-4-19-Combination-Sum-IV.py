@@ -46,7 +46,7 @@ class Solution:
             for num in nums:
                 if num <= i:
                     dp[i] += dp[i - num]
-                print(dp)
+                # print(dp)
         return dp[target]
 
 
@@ -62,9 +62,10 @@ class Solution2:
             for num in nums:
                 if num + i <= target:
                     dp[i + num] += dp[i]
+                # print(dp)
         return dp[target]
 
 
-solution = Solution()
+solution = Solution2()
 
 print(solution.combinationSum4([1,2,3], 4))
