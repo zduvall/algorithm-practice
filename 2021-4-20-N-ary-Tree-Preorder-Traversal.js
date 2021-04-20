@@ -40,6 +40,7 @@ const preorder = function (root, nodes = []) {
   for (let child of root.children) {
     preorder(child, nodes);
   }
+  return nodes
 };
 
 
@@ -53,7 +54,7 @@ const preorderIter = function (root) {
     const cur = stack.pop();
     nodes.push(cur.val);
     while (cur.children.length) {
-      stack.push(cur.children.pop);
+      stack.push(cur.children.pop());
     }
   }
 
