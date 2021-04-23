@@ -29,9 +29,19 @@
 # variable for index of diff that is smallest absulte value
 
 class Solution:
-    def missingNumber(self, arr: List[int]) -> int:
+    def missingNumber(self, arr) -> int:
+    # def missingNumber(self, arr: List[int]) -> int:
+      length = len(arr)
+      diff = (arr[length - 1] - arr[0]) / length
+      if diff == 0:
+        return arr[0]
+      for i in range(1, length):
+        if arr[i] - arr[i-1] != diff:
+          return int(arr[i] - diff)
+
 
 solution = Solution()
+
 
 print(solution.missingNumber([5, 7, 11, 13])); # 9
 print(solution.missingNumber([15, 13, 12])); # 14
