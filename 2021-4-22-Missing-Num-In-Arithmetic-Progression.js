@@ -1,8 +1,8 @@
 // Missing Number In Arithmetic Progression
-// In some array arr, the values were in arithmetic progression: the values 
+// In some array arr, the values were in arithmetic progression: the values
 // arr[i+1] - arr[i] are all equal for every 0 <= i < arr.length - 1.
 
-// Then, a value from arr was removed that was not the first or last value in 
+// Then, a value from arr was removed that was not the first or last value in
 // the array.
 
 // Return the removed value.
@@ -27,6 +27,21 @@
  * @param {number[]} arr
  * @return {number}
  */
-const missingNumber = function(arr) {
-    
+
+// tabulation for diffs
+// object to store count of diffs
+// variable for diff that is smallest absolute value
+// variable for index of diff that is smallest absulte value
+
+const missingNumber = function (arr) {
+  const length = arr.length;
+
+  let diff = (arr[length - 1] - arr[0]) / length;
+  if (diff === 0) return arr[0];
+  for (let i = 1; i < length; i++) {
+    if (arr[i] - arr[i - 1] !== diff) return arr[i] - diff;
+  }
 };
+
+console.log(missingNumber([5, 7, 11, 13])); // 9
+console.log(missingNumber([15, 13, 12])); // 14
