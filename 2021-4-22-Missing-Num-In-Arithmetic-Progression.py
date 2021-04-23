@@ -39,8 +39,13 @@ class Solution:
         if arr[i] - arr[i-1] != diff:
           return int(arr[i] - diff)
 
+class Solution2:
+    def missingNumber(self, arr) -> int:
+    # def missingNumber(self, arr: List[int]) -> int:
+      return ((len(arr) + 1) * (arr[0] + arr[len(arr) - 1]) / 2) - sum(arr)
 
-solution = Solution()
+
+solution = Solution2()
 
 
 print(solution.missingNumber([5, 7, 11, 13])); # 9
