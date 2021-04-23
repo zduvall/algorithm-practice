@@ -48,5 +48,5 @@ class Solution2:
 solution = Solution2()
 
 
-print(solution.missingNumber([5, 7, 11, 13])); # 9
-print(solution.missingNumber([15, 13, 12])); # 14
+print(solution.missingNumber([5, 7, 11, 13])) # 9
+print(solution.missingNumber([15, 13, 12])) # 14
