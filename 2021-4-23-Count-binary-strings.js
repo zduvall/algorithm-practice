@@ -27,19 +27,22 @@
 // s.length will be between 1 and 50,000.
 // s will only consist of "0" or "1" characters.
 
-var countBinarySubstrings = function (s) {
-  let curr = 1;
-  let prev = 0;
+const countBinarySubstrings = function (s) {
+  let cur = 1;
+  let pre = 0;
   let ans = 0;
 
   for (let i = 1; i < s.length; i++)
     if (s[i] === s[i - 1]) {
-      curr++;
+      cur++;
     } else {
-      ans += Math.min(curr, prev);
-      prev = curr;
-      curr = 1;
+      ans += Math.min(cur, pre);
+      pre = cur;
+      cur = 1;
     }
 
-  return ans + Math.min(curr, prev);
+  return ans + Math.min(cur, pre);
 };
+
+countBinarySubstrings('0011010001')
+
