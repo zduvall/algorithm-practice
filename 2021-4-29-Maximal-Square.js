@@ -38,11 +38,7 @@ const maximalSquare = function (matrix) {
     for (let j = 0; j < matrix[0].length; j++) {
       if (matrix[i][j] === '0') matrix[i][j] = 0;
       else if (i === 0 || j === 0) matrix[i][j] = Number(matrix[i][j]);
-      else {
-        matrix[i][j] =
-          Math.min(matrix[i - 1][j], matrix[i][j - 1], matrix[i - 1][j - 1]) +
-          1;
-      }
+      else matrix[i][j] = Math.min(matrix[i - 1][j], matrix[i][j - 1], matrix[i - 1][j - 1]) + 1;
       if (matrix[i][j] > max) max = matrix[i][j];
     }
   }
