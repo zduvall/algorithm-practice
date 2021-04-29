@@ -25,18 +25,6 @@
 // 1 <= m + n <= 200
 // -109 <= nums1[i], nums2[i] <= 109
 
-// function merge(nums1, m, nums2, n) {
-//   newNums1 = nums1.slice(0, m);
-//   const merged = [];
-
-//   while (newNums1.length && nums2.length) {
-//     newNums1[0] < nums2[0]
-//       ? merged.push(newNums1.shift())
-//       : merged.push(nums2.shift());
-//   }
-//   return [...merged, ...newNums1, ...nums2];
-// }
-
 function merge(nums1, m, nums2, n) {
   let insertPos = m + n - 1;
   m--;
@@ -47,13 +35,9 @@ function merge(nums1, m, nums2, n) {
 }
 
 let nums1 = [1, 2, 3, 0, 0, 0];
-
 merge(nums1, 3, [2, 5, 6], 3);
-
 console.log(nums1);
 
 nums1 = [1];
-
 merge(nums1, 1, [], 0);
-
 console.log(nums1);
