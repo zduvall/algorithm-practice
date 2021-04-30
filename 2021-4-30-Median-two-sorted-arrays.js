@@ -43,21 +43,41 @@
 
 const findMedianSortedArrays = (nums1, nums2) => {
   const len = nums1.length + nums2.length;
-  // const mid = (len / 2 + 1) | 0; // bitwise or operator does the same thing in this case
-  const mid = Math.floor(len / 2 + 1);
+  const mid = (len / 2 + 1) | 0;
 
-  let i = 0,
-    j = 0,
-    k = 0,
-    last,
-    b4last;
+  let i = 0;
+  let j = 0;
+  let k = 0;
+  let last;
+  let b4last;
 
   while (i++ < mid) {
     b4last = last;
     last = nums1[j] < (nums2[k] ?? Infinity) ? nums1[j++] : nums2[k++];
   }
-  return len % 2 === 1 ? last : (last + beforeLast) / 2;
+
+  return len % 2 === 1 ? last : (last + b4last) / 2;
 };
+
+console.log(findMedianSortedArrays([1, 2], [3, 4])); // 2.5
+
+// const findMedianSortedArrays = (nums1, nums2) => {
+//   const len = nums1.length + nums2.length;
+//   // const mid = (len / 2 + 1) | 0; // bitwise or operator does the same thing in this case
+//   const mid = Math.floor(len / 2 + 1);
+
+//   let i = 0,
+//     j = 0,
+//     k = 0,
+//     last,
+//     b4last;
+
+//   while (i++ < mid) {
+//     b4last = last;
+//     last = nums1[j] < (nums2[k] ?? Infinity) ? nums1[j++] : nums2[k++];
+//   }
+//   return len % 2 === 1 ? last : (last + beforeLast) / 2;
+// };
 
 // Nullish coalescing operator, ??, handles the case for choosing the lesser
 // between nums1[j] and nums2[k] where nums2[k] is undefined and we want
