@@ -52,5 +52,36 @@ const findJudge = function (N, trust) {
     tab[j] += 1; // count how many people trust j
   }
 
+  console.log(tab);
   return tab.indexOf(N - 1); // judge will be trusted by everyone except 1 (self)
 };
+
+console.log(findJudge(2, [[1, 2]])); // 2
+console.log(
+  findJudge(3, [
+    [1, 3],
+    [2, 3],
+  ])
+); // 3
+console.log(
+  findJudge(3, [
+    [1, 3],
+    [2, 3],
+    [3, 1],
+  ])
+); // -1
+console.log(
+  findJudge(3, [
+    [1, 2],
+    [2, 3],
+  ])
+); // -1
+console.log(
+  findJudge(4, [
+    [1, 3],
+    [1, 4],
+    [2, 3],
+    [2, 4],
+    [4, 3],
+  ])
+); // 3
