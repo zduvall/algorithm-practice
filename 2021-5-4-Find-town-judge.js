@@ -52,7 +52,6 @@ const findJudge = function (N, trust) {
     tab[j] += 1; // count how many people trust j
   }
 
-  console.log(tab);
   return tab.indexOf(N - 1); // judge will be trusted by everyone except 1 (self)
 };
 
