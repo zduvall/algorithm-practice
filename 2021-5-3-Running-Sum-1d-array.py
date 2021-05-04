@@ -28,15 +28,15 @@
 
 
 class Solution:
-    # def runningSum(self, nums: List[int]) -> List[int]:
-    def runningSum(self, nums):
-        for i in range(1, len(nums)):
-            nums[i] += nums[i - 1]
-        return nums
+    # def runningSum(self, n: List[int]) -> List[int]:
+    def runningSum(self, n):
+        for i in range(1, len(n)):
+            n[i] += n[i - 1]
+        return n
 
 
 solution = Solution()
 
 print(solution.runningSum([1, 2, 3, 4]))
 print(solution.runningSum([1, 1, 1, 1, 1]))
-print(solution.runningSum([3,1,2,10,1]))
+print(solution.runningSum([3, 1, 2, 10, 1]))
