@@ -28,11 +28,9 @@
  * @param {number[]} nums
  * @return {number[]}
  */
-const runningSum = function (nums) {
-  for (let i = 1; i < nums.length; i++) {
-    nums[i] += nums[i - 1];
-  }
-  return nums;
+const runningSum = function (n) {
+  for (let i = 1; i < n.length; i++) n[i] += n[i - 1];
+  return n;
 };
 
 console.log(runningSum([1, 2, 3, 4]));
