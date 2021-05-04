@@ -49,7 +49,7 @@ const findJudge = function (N, trust) {
 
   for (let [i, j] of trust) {
     tab[i] -= Infinity; // if i trusts someone => disqualified
-    tab[j] += 1; // => count how many people trust j
+    tab[j] += 1; // count how many people trust j
   }
 
   return tab.indexOf(N - 1); // judge will be trusted by everyone except 1 (self)
