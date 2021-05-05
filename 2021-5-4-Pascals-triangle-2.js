@@ -33,33 +33,30 @@
 
 // any num = row!/(col!(row-col)!)      <--     here's the formula I used to solve the problem
 
-fMemo = {};
+const fMemo = {};
 
 // factorial
 function f(n) {
   if (n in fMemo) return fMemo[n];
-
-  let i = 0;
-  let cur = 1;
-  while (++i <= n) {
-    cur *= i;
-    fMemo[i] = cur;
-  }
+  if (n === 0) return 1;
+  fMemo[n] = n * f(n - 1);
+  return fMemo[n]
 }
 
 function getRow(r) {
   // r for row
-  const ans = [1];
   f(r);
+  const ans = new Array(r + 1);
+  ans[0] = 1;
+  ans[r] = 1;
 
   for (let c = 1; c < r / 2 + 0.5; c++) {
     // c for column
-    ans.push(fMemo[r] / (fMemo[c] * fMemo[r - c]));
+    ans[c] = fMemo[r] / (fMemo[c] * fMemo[r - c]);
+    ans[r - c] = ans[c];
   }
 
-  return r % 2 === 1
-    ? [...ans, ...ans.reverse()]
-    : [...ans, ...ans.reverse().slice(1)];
+  return ans;
 }
 
 // Refactor:
