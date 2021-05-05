@@ -31,12 +31,60 @@
 // 9  => [1, 9, 36, 84, 126, 126, 84, 36, 9, 1]
 // 10 => [1, 10, 45, 120, 210, 252, 210, 120, 45, 20, 1]
 
-// any num = comb(n,m) = n!/(i!(n-i)!)
+// any num = row!/(col!(row-col)!)      <--     here's the formula I used to solve the problem
 
-// Plan:
-// define function
-// base cases:
-// if rowIndex === 0 return [1]
+fMemo = {};
 
-// Code:
+// factorial
+function f(n) {
+  if (n in fMemo) return fMemo[n];
+
+  let i = 0;
+  let cur = 1;
+  while (++i <= n) {
+    cur *= i;
+    fMemo[i] = cur;
+  }
+}
+
+function getRow(r) {
+  // r for row
+  const ans = [1];
+  f(r);
+
+  for (let c = 1; c < r / 2 + 0.5; c++) {
+    // c for column
+    ans.push(fMemo[r] / (fMemo[c] * fMemo[r - c]));
+  }
+
+  return r % 2 === 1
+    ? [...ans, ...ans.reverse()]
+    : [...ans, ...ans.reverse().slice(1)];
+}
+
 // Refactor:
+
+// this way is simpler, but actually slower
+
+// function getRow(r) {
+//   let ans = [1];
+
+//   for (let i = 0; i < r; i++) {
+//     temp1 = [0, ...ans];
+//     temp2 = [...ans, 0];
+//     for (let i = 0; i < temp1.length; i++) {
+//       cur = ans[i] = temp1[i] + temp2[i];
+//       if (i > ans.length - 1) ans.push(cur);
+//       else ans[i] = cur;
+//     }
+//   }
+//   return ans;
+// }
+
+console.log(getRow(0));
+console.log(getRow(1));
+console.log(getRow(2));
+console.log(getRow(3));
+console.log(getRow(4));
+console.log(getRow(5));
+console.log(getRow(6));
