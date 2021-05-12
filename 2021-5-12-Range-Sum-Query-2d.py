@@ -55,6 +55,7 @@ class NumMatrix:
             return None
         row = len(matrix)
         col = len(matrix[0])
+        
         self.dp = [[0] * (col + 1) for _ in range(row + 1)]
         
         for i in range(1, row + 1):
