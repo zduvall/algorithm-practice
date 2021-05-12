@@ -1,8 +1,8 @@
 // Put Boxes Into the Warehouse I
-// You are given two arrays of positive integers, boxes and warehouse, 
-// representing the heights of some boxes of unit width and the heights of n 
-// rooms in a warehouse respectively. The warehouse's rooms are labelled from 0 
-// to n - 1 from left to right where warehouse[i] (0-indexed) is the height of 
+// You are given two arrays of positive integers, boxes and warehouse,
+// representing the heights of some boxes of unit width and the heights of n
+// rooms in a warehouse respectively. The warehouse's rooms are labelled from 0
+// to n - 1 from left to right where warehouse[i] (0-indexed) is the height of
 // the ith room.
 
 // Boxes are put into the warehouse by the following rules:
@@ -14,43 +14,39 @@
 // then that box and all other boxes behind it will be stopped before that room.
 // Return the maximum number of boxes you can put into the warehouse.
 
-
 // Example 1:
-
 
 // Input: boxes = [4,3,4,1], warehouse = [5,3,3,4,1]
 // Output: 3
-// Explanation: 
+// Explanation:
 
-// We can first put the box of height 1 in room 4. Then we can put the box of 
-// height 3 in either of the 3 rooms 1, 2, or 3. Lastly, we can put one box of 
+// We can first put the box of height 1 in room 4. Then we can put the box of
+// height 3 in either of the 3 rooms 1, 2, or 3. Lastly, we can put one box of
 // height 4 in room 0.
 // There is no way we can fit all 4 boxes in the warehouse.
 // Example 2:
 
-
 // Input: boxes = [1,2,2,3,4], warehouse = [3,4,1,2]
 // Output: 3
-// Explanation: 
+// Explanation:
 
-// Notice that it's not possible to put the box of height 4 into the warehouse 
+// Notice that it's not possible to put the box of height 4 into the warehouse
 // since it cannot pass the first room of height 3.
 // Also, for the last two rooms, 2 and 3, only boxes of height 1 can fit.
-// We can fit 3 boxes maximum as shown above. The yellow box can also be put in 
+// We can fit 3 boxes maximum as shown above. The yellow box can also be put in
 // room 2 instead.
-// Swapping the orange and green boxes is also valid, or swapping one of them 
+// Swapping the orange and green boxes is also valid, or swapping one of them
 // with the red box.
 // Example 3:
 
 // Input: boxes = [1,2,3], warehouse = [1,2,3,4]
 // Output: 1
-// Explanation: Since the first room in the warehouse is of height 1, we can 
+// Explanation: Since the first room in the warehouse is of height 1, we can
 // only put boxes of height 1.
 // Example 4:
 
 // Input: boxes = [4,5,6], warehouse = [3,3,3,3,3]
 // Output: 0
-
 
 // Constraints:
 
@@ -64,6 +60,56 @@
  * @return {number}
  */
 
-const maxBoxesInWarehouse = function(boxes, warehouse) {
-  
+// // this should work, but took too long, was not a very smart approach
+
+// const maxBoxesInWarehouse = function (boxes, warehouse) {
+//   const bxsObj = {};
+//   const sBxs = boxes.sort();
+
+//   for (let box of boxes) {
+//     if (box in bxsObj) bxsObj[box]++;
+//     else bxsObj[box] = 1;
+//   }
+
+//   let count = 0;
+
+//   for (let i = warehouse.length - 1; i >= 0; i--) {
+//     let maxSpace = Math.min(...warehouse.slice(0, i + 1));
+//     let maxBox = Math.max(
+//       ...Object.keys(bxsObj).filter((bx) => bx <= maxSpace)
+//     );
+
+//     if (bxsObj[maxBox]) {
+//       count++;
+//       bxsObj[maxBox]--;
+//       if (bxsObj[maxBox] === 0) delete bxsObj[maxBox];
+//     }
+//   }
+
+//   return count;
+// };
+
+const maxBoxesInWarehouse = function (boxes, warehouse) {
+  boxes.sort((a, b) => a - b);
+
+  for (let i = 0, min = warehouse[0]; i < warehouse.length; i++) {
+    if (warehouse[i] < min) min = warehouse[i];
+    else warehouse[i] = min;
+  }
+
+  console.log(boxes, warehouse)
+
+  let bxIdx = 0;
+
+  for (let i = warehouse.length - 1; i >= 0; i--) {
+    if (boxes[bxIdx] <= warehouse[i]) {
+      bxIdx++;
+    }
+  }
+
+  return bxIdx;
 };
+
+console.log(maxBoxesInWarehouse([4, 3, 4, 1], [5, 3, 3, 4, 1])); // 3
+console.log(maxBoxesInWarehouse([1, 2, 2, 3, 4], [3, 4, 1, 2])); // 3
+console.log(maxBoxesInWarehouse([1, 2, 3], [1, 2, 3, 4])); // 1
