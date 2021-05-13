@@ -46,32 +46,36 @@
 // second loops splits the substrings with a decimal
 
 const ambiguousCoordinates = function (s) {
-  // s = s.slice(1, s.length - 1);
 
   const ans = [];
 
+  // outer for loop to create all combinations of numbers on left and right side
   for (let i = 2; i < s.length - 1; i++) {
     let lft = s.slice(1, i);
     let rght = s.slice(i, s.length - 1);
 
+    //  add combinations with no decimals
     const ls = [lft];
     const rs = [rght];
 
+    // inner for loop to find all combinations of left side with a decimal
     for (let i = 1; i < lft.length; i++) {
       temp1 = lft.slice(0, i);
       temp2 = lft.slice(i);
       ls.push(`${temp1}.${temp2}`);
     }
 
+    // inner for loop to find all combinations of right side with a decimal
     for (let i = 1; i < rght.length; i++) {
       temp1 = rght.slice(0, i);
       temp2 = rght.slice(i, rght.length);
       rs.push(`${temp1}.${temp2}`);
     }
 
+    // push in all valid answers that pass the regex
     for (let l of ls) {
+      if (!/^([1-9]\d*|0\.\d*[1-9]|[1-9]\d*\.\d*[1-9]|0)$/i.test(l)) continue;
       for (let r of rs) {
-        if (!/^([1-9]\d*|0\.\d*[1-9]|[1-9]\d*\.\d*[1-9]|0)$/i.test(l)) continue;
         if (!/^([1-9]\d*|0\.\d*[1-9]|[1-9]\d*\.\d*[1-9]|0)$/i.test(r)) continue;
         ans.push(`(${l}, ${r})`);
       }
