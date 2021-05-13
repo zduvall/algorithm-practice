@@ -35,3 +35,12 @@
 
 // 4 <= s.length <= 12.
 // s[0] = "(", s[s.length - 1] = ")", and the other elements in s are digits.
+
+
+/**
+ * @param {string} s
+ * @return {string[]}
+ */
+const ambiguousCoordinates = function(s) {
+    
+};
