@@ -30,22 +30,40 @@
 
 const longestStrChain = function (words) {
   let memo = {};
+  let ans = 0
 
-  words = words.sort((a, b) => a.length - b.length);
+  words.sort((a, b) => a.length - b.length);
 
   for (let word of words) {
-    let longest = 0;
+    let max = 0;
     for (let i = 0; i < word.length; i++) {
-      let pre = word.slice(0, i) + word.slice(i + 1);
-
-      longest = Math.max(longest, (memo[pre] || 0) + 1);
+      let temp = word.slice(0, i) + word.slice(i + 1);
+      max = Math.max(max, (memo[temp] || 0) + 1);
     }
-
-    memo[word] = longest;
+    memo[word] = max
+    ans = Math.max(ans, max)
   }
-
-  return Math.max(...Object.values(memo));
+  return ans
 };
 
 console.log(longestStrChain(['a', 'b', 'ba', 'bca', 'bda', 'bdca'])); // 4
 console.log(longestStrChain(['xbc', 'pcxbcf', 'xb', 'cxbc', 'pcxbc'])); // 5
+
+// const longestStrChain = function (words) {
+//   let memo = {};
+
+//   words = words.sort((a, b) => a.length - b.length);
+
+//   for (let word of words) {
+//     let longest = 0;
+//     for (let i = 0; i < word.length; i++) {
+//       let pre = word.slice(0, i) + word.slice(i + 1);
+
+//       longest = Math.max(longest, (memo[pre] || 0) + 1);
+//     }
+
+//     memo[word] = longest;
+//   }
+
+//   return Math.max(...Object.values(memo));
+// };
