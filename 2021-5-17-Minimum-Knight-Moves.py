@@ -44,3 +44,16 @@ solution = Solution()
 
 print(solution.minKnightMoves(2, 1))  # 1
 print(solution.minKnightMoves(5, 5))  # 4
+
+
+# math solution
+
+# class Solution:
+#     def minKnightMoves(self, x: int, y: int) -> int:
+#         x, y = abs(x), abs(y)
+#         if (x < y): x, y = y, x
+#         if (x == 1 and y == 0): return 3        
+#         if (x == 2 and y == 2): return 4        
+#         diff = x - y
+#         if (y > diff): return diff - 2 * int((diff - y) // 3);
+#         else: return diff - 2 * int((diff - y) // 4);
