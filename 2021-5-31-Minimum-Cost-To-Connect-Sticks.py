@@ -39,24 +39,28 @@
 # 1 <= sticks.length <= 104
 # 1 <= sticks[i] <= 104
 
+import heapq
 
 class Solution:
     def connectSticks(self, sticks) -> int:
         # def connectSticks(self, sticks: List[int]) -> int:
-        if len(sticks) == 1:
-            return sticks[0]
+        if len(sticks) < 2:
+            return 0
 
-        list.sort(sticks)
-        return sticks
+        res = 0
+        heapq.heapify(sticks)
+        while len(sticks) > 1:
+            smallest = heapq.heappop(sticks) + heapq.heappop(sticks)
 
-        ans = 0
+            res += smallest
+            heapq.heappush(sticks, smallest)
 
-        for stick in sticks:
-            pass
+        return res
 
 
 solution = Solution()
 
-print(solution.connectSticks([9]))
-print(solution.connectSticks([2, 4, 3]))
-print(solution.connectSticks([1, 8, 3, 5]))
+print(solution.connectSticks([9]))  # 0
+print(solution.connectSticks([2, 4, 3]))  # 14
+print(solution.connectSticks([1, 8, 3, 5]))  # 30
+print(solution.connectSticks([3, 7, 1, 10, 8]))  # 30
