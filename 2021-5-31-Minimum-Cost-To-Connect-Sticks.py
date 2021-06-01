@@ -1,12 +1,12 @@
 # Minimum Cost to Connect Sticks
-# You have some number of sticks with positive integer lengths. These lengths 
+# You have some number of sticks with positive integer lengths. These lengths
 # are given as an array sticks, where sticks[i] is the length of the ith stick.
 
-# You can connect any two sticks of lengths x and y into one stick by paying a 
-# cost of x + y. You must connect all the sticks until there is only one stick 
+# You can connect any two sticks of lengths x and y into one stick by paying a
+# cost of x + y. You must connect all the sticks until there is only one stick
 # remaining.
 
-# Return the minimum cost of connecting all the given sticks into one stick in 
+# Return the minimum cost of connecting all the given sticks into one stick in
 # this way.
 
 # Example 1:
@@ -30,7 +30,7 @@
 
 # Input: sticks = [5]
 # Output: 0
-# Explanation: There is only one stick, so you don't need to do anything. The 
+# Explanation: There is only one stick, so you don't need to do anything. The
 # total cost is 0.
 
 
@@ -38,3 +38,25 @@
 
 # 1 <= sticks.length <= 104
 # 1 <= sticks[i] <= 104
+
+
+class Solution:
+    def connectSticks(self, sticks) -> int:
+        # def connectSticks(self, sticks: List[int]) -> int:
+        if len(sticks) == 1:
+            return sticks[0]
+
+        list.sort(sticks)
+        return sticks
+
+        ans = 0
+
+        for stick in sticks:
+            pass
+
+
+solution = Solution()
+
+print(solution.connectSticks([9]))
+print(solution.connectSticks([2, 4, 3]))
+print(solution.connectSticks([1, 8, 3, 5]))
