@@ -34,17 +34,13 @@
 
 class Solution:
     def maxAreaOfIsland(self, grid) -> int:
-        # def maxAreaOfIsland(self, grid: List[List[int]]) -> int:
-
-        if not any(sum(grid, [])):
-            return 0
 
         visited = set()
 
         def area(y, x):
             if (
-                -1 in {y, x}
-                or (y, x) in visited
+                (y, x) in visited
+                or -1 in {y, x}
                 or y >= len(grid)
                 or x >= len(grid[0])
                 or grid[y][x] == 0
@@ -62,6 +58,7 @@ class Solution:
                 for y in range(len(grid[0]))
                 if grid[x][y] == 1
             ]
+            + [0]
         )
 
 
@@ -79,6 +76,10 @@ grid = [
 ]
 
 print(solution.maxAreaOfIsland(grid))
+
+grid2 = [[0]]
+
+print(solution.maxAreaOfIsland(grid2))
 
 
 # function maxAreaOfIsland (grid) {
