@@ -80,38 +80,3 @@ print(solution.maxAreaOfIsland(grid))
 grid2 = [[0]]
 
 print(solution.maxAreaOfIsland(grid2))
-
-
-# function maxAreaOfIsland (grid) {
-#   let max = 0;
-#   for (let i = 0; i < grid.length; i++) {
-#     for (let j = 0; j < grid[0].length; j++) {
-#       if (grid[i][j] === 1) {
-#         let cur = islandArea(i, j);
-#         max = Math.max(max, cur);
-#       }
-#     }
-#   }
-
-#   function islandArea(x, y) {
-#     let area = 0;
-#     if (
-#       x < 0 ||
-#       y < 0 ||
-#       x >= grid.length ||
-#       y >= grid[0].length ||
-#       grid[x][y] === 0
-#     ) {
-#       return 0;
-#     }
-#     grid[x][y] = 0;
-#     area =
-#       1 +
-#       islandArea(x - 1, y) +
-#       islandArea(x + 1, y) +
-#       islandArea(x, y - 1) +
-#       islandArea(x, y + 1);
-#     return area;
-#   }
-#   return max;
-# };
