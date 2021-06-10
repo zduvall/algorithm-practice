@@ -32,8 +32,10 @@ function rangeSumBST(root, low, high) {
       total += cur.val;
       if (cur.left) stack.push(cur.left);
       if (cur.right) stack.push(cur.right);
+
     } else if (cur.val < low) {
       if (cur.right) stack.push(cur.right);
+      
     } else {
       if (cur.left) stack.push(cur.left);
     }
