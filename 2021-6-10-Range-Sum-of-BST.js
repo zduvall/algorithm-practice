@@ -1,6 +1,6 @@
 // 938. Range Sum of BST
 
-// Given the root node of a binary search tree and two integers low and high, 
+// Given the root node of a binary search tree and two integers low and high,
 // return the sum of values of all nodes with a value in the inclusive range [low, high].
 
 // Example 1:
@@ -20,3 +20,24 @@
 // 1 <= Node.val <= 105
 // 1 <= low <= high <= 105
 // All Node.val are unique.
+
+function rangeSumBST(root, low, high) {
+  let total = 0;
+  const stack = [root];
+
+  while (stack.length) {
+    const cur = stack.pop();
+
+    if (cur.val >= low && cur.val <= high) {
+      total += cur.val;
+      if (cur.left) stack.push(cur.left);
+      if (cur.right) stack.push(cur.right);
+    } else if (cur.val < low) {
+      if (cur.right) stack.push(cur.right);
+    } else {
+      if (cur.left) stack.push(cur.left);
+    }
+  }
+
+  return total;
+}
