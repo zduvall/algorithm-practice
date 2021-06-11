@@ -30,7 +30,6 @@
 
 # Input: stones = [7,90,5,1,100,10,10,2]
 # Output: 122
- 
 
 # Constraints:
 
