@@ -1,17 +1,17 @@
 # Stone Game VII
 # Alice and Bob take turns playing a game, with Alice starting first.
 
-# There are n stones arranged in a row. On each player's turn, they can remove 
-# either the leftmost stone or the rightmost stone from the row and receive 
-# points equal to the sum of the remaining stones' values in the row. The winner 
+# There are n stones arranged in a row. On each player's turn, they can remove
+# either the leftmost stone or the rightmost stone from the row and receive
+# points equal to the sum of the remaining stones' values in the row. The winner
 # is the one with the higher score when there are no stones left to remove.
 
-# Bob found that he will always lose this game (poor Bob, he always loses), so 
-# he decided to minimize the score's difference. Alice's goal is to maximize the 
+# Bob found that he will always lose this game (poor Bob, he always loses), so
+# he decided to minimize the score's difference. Alice's goal is to maximize the
 # difference in the score.
 
-# Given an array of integers stones where stones[i] represents the value of the 
-# ith stone from the left, return the difference in Alice and Bob's score if 
+# Given an array of integers stones where stones[i] represents the value of the
+# ith stone from the left, return the difference in Alice and Bob's score if
 # they both play optimally.
 
 
@@ -19,7 +19,7 @@
 
 # Input: stones = [5,3,1,4,2]
 # Output: 6
-# Explanation: 
+# Explanation:
 # - Alice removes 2 and gets 5 + 3 + 1 + 4 = 13 points. Alice = 13, Bob = 0, stones = [5,3,1,4].
 # - Bob removes 5 and gets 3 + 1 + 4 = 8 points. Alice = 13, Bob = 8, stones = [3,1,4].
 # - Alice removes 3 and gets 1 + 4 = 5 points. Alice = 18, Bob = 8, stones = [1,4].
@@ -37,14 +37,17 @@
 # 2 <= n <= 1000
 # 1 <= stones[i] <= 1000
 
+
 class Solution:
     def stoneGameVII(self, S: List[int]) -> int:
         N = len(S)
-        dpCurr, dpLast = [0] * N, [0] * N
+        dpCurr = [0] * N
+        dpLast = [0] * N
         for i in range(N - 2, -1, -1):
             total = S[i]
-            dpLast, dpCurr = dpCurr, dpLast
+            dpLast = dpCurr
+            dpCurr = dpLast
             for j in range(i + 1, N):
                 total += S[j]
-                dpCurr[j] = max(total - S[i] - dpLast[j], total - S[j] - dpCurr[j-1])
+                dpCurr[j] = max(total - S[i] - dpLast[j], total - S[j] - dpCurr[j - 1])
         return dpCurr[-1]
