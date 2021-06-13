@@ -7,17 +7,13 @@
 
 // You may assume that the borders of the maze are all walls (see examples).
 
- 
-
 // Example 1:
-
 
 // Input: maze = [[0,0,1,0,0],[0,0,0,0,0],[0,0,0,1,0],[1,1,0,1,1],[0,0,0,0,0]], start = [0,4], destination = [4,4]
 // Output: 12
 // Explanation: One possible way is : left -> down -> left -> down -> right -> down -> right.
 // The length of the path is 1 + 1 + 3 + 1 + 2 + 2 + 2 = 12.
 // Example 2:
-
 
 // Input: maze = [[0,0,1,0,0],[0,0,0,0,0],[0,0,0,1,0],[1,1,0,1,1],[0,0,0,0,0]], start = [0,4], destination = [3,2]
 // Output: -1
@@ -26,7 +22,6 @@
 
 // Input: maze = [[0,0,0,0,0],[1,1,0,0,1],[0,0,0,0,0],[0,1,0,0,1],[0,1,0,0,0]], start = [4,3], destination = [0,1]
 // Output: -1
- 
 
 // Constraints:
 
@@ -45,15 +40,17 @@ const shortestDistance = function (maze, start, destination) {
   let dist = new Array(maze.length)
     .fill()
     .map(() => Array(maze[0].length).fill(Infinity));
+
+  dist[start[0]][start[1]] = 0;
+
   const dirs = [
     [0, 1],
     [0, -1],
     [-1, 0],
     [1, 0],
   ];
-  
+
   let queue = [];
-  dist[start[0]][start[1]] = 0;
   queue.push(start);
 
   // queue up each spot you hit
@@ -93,7 +90,7 @@ const shortestDistance = function (maze, start, destination) {
   }
 
   // return the shortest path to destination or -1
-  return dist[destination[0]][destination[1]] !== Infinity
+  return dist[destination[0]][destination[1]] < Infinity
     ? dist[destination[0]][destination[1]]
     : -1;
 };
