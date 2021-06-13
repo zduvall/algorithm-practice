@@ -40,3 +40,74 @@
 // 0 <= startcol, destinationcol <= n
 // Both the ball and the destination exist in an empty space, and they will not be in the same position initially.
 // The maze contains at least 2 empty spaces.
+
+const shortestDistance = function (maze, start, destination) {
+  let dist = new Array(maze.length)
+    .fill()
+    .map(() => Array(maze[0].length).fill(Infinity));
+  const dirs = [
+    [0, 1],
+    [0, -1],
+    [-1, 0],
+    [1, 0],
+  ];
+  
+  let queue = [];
+  dist[start[0]][start[1]] = 0;
+  queue.push(start);
+
+  // queue up each spot you hit
+  while (queue.length) {
+    //dequeue last spot
+    let curr = queue.shift();
+
+    //loop through dirs
+    for (let i = 0; i < dirs.length; i++) {
+      let [x, y] = curr;
+      let count = dist[x][y];
+
+      // loop until hitting the maze ends
+      while (
+        x >= 0 &&
+        y >= 0 &&
+        x < maze.length &&
+        y < maze[0].length &&
+        maze[x][y] === 0
+      ) {
+        x += dirs[i][0];
+        y += dirs[i][1];
+        count++;
+      }
+      //decrement values because stepped over by 1
+      count--;
+      x -= dirs[i][0];
+      y -= dirs[i][1];
+
+      // if count < dist[x][y] it means we either havent been there or we've now found
+      // the shortest route to this location. Longer routes are ignored & not added to queue.
+      if (count < dist[x][y]) {
+        dist[x][y] = count;
+        queue.push([x, y]);
+      }
+    }
+  }
+
+  // return the shortest path to destination or -1
+  return dist[destination[0]][destination[1]] !== Infinity
+    ? dist[destination[0]][destination[1]]
+    : -1;
+};
+
+console.log(
+  shortestDistance(
+    [
+      [0, 0, 1, 0, 0],
+      [0, 0, 0, 0, 0],
+      [0, 0, 0, 1, 0],
+      [1, 1, 0, 1, 1],
+      [0, 0, 0, 0, 0],
+    ],
+    [0, 4],
+    [3, 2]
+  )
+);
