@@ -27,3 +27,7 @@
 # queries[i].length == 2
 # 0 <= queries[i][0] < colors.length
 # 1 <= queries[i][1] <= 3
+
+class Solution:
+    def shortestDistanceColor(self, colors: List[int], queries: List[List[int]]) -> List[int]:
+        pass
