@@ -32,7 +32,6 @@
 from typing import List
 from bisect import bisect_left
 
-
 class Solution:
     def shortestDistanceColor(
         self, colors: List[int], queries: List[List[int]]
@@ -40,12 +39,14 @@ class Solution:
 
         ans = []
 
+        # create an object containing all indices of each of the 3 colors
         idxs = {1: [], 2: [], 3: []}
-
         for i in range(len(colors)):
             idxs[colors[i]].append(i)
 
         for i, c in queries:
+
+            # if there are no occurances of the target color in colors, append -1
             if not len(idxs[c]):
                 ans.append(-1)
                 continue
@@ -53,10 +54,15 @@ class Solution:
             # returns where the second argument (int) would fit in the first (list) without actually inserting it
             insrt_i = bisect_left(idxs[c], i)
 
+            # if it fits below everything, append difference from i to first num in idxs[c]
             if insrt_i == 0:
                 ans.append(idxs[c][0] - i)
+
+            # if it fits after everything, append difference from last num in idxs[c] to i
             elif insrt_i >= len(idxs[c]):
                 ans.append(i - idxs[c][-1])
+
+            # if it fits in the middle, append smaller difference between i and the number right before or after where it would be inserted
             else:
                 ans.append(
                     min(
