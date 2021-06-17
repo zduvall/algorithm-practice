@@ -13,6 +13,7 @@
 # The nearest 3 from index 1 is at index 4 (3 steps away).
 # The nearest 2 from index 2 is at index 2 itself (0 steps away).
 # The nearest 1 from index 6 is at index 3 (3 steps away).
+
 # Example 2:
 
 # Input: colors = [1,2], queries = [[0,3]]
@@ -35,4 +36,14 @@ class Solution:
     def shortestDistanceColor(
         self, colors: List[int], queries: List[List[int]]
     ) -> List[int]:
-        pass
+        return colors, queries
+
+
+solution = Solution()
+
+print(
+    solution.shortestDistanceColor(
+        colors=[1, 1, 2, 1, 3, 2, 2, 3, 3], queries=[[1, 3], [2, 2], [6, 1]]
+    )
+)
+print(solution.shortestDistanceColor(colors=[1, 2], queries=[[0, 3]]))
