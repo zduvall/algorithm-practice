@@ -36,7 +36,14 @@ class Solution:
     def shortestDistanceColor(
         self, colors: List[int], queries: List[List[int]]
     ) -> List[int]:
-        return colors, queries
+        options = [1, 2, 3]
+        ans = []
+        indices = {
+            option: [i for i, x in enumerate(colors) if x == option]
+            for option in options
+        }
+        for query in queries:
+            
 
 
 solution = Solution()
