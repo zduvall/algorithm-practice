@@ -30,20 +30,42 @@
 # 1 <= queries[i][1] <= 3
 
 from typing import List
+from bisect import bisect_left
 
 
 class Solution:
     def shortestDistanceColor(
         self, colors: List[int], queries: List[List[int]]
     ) -> List[int]:
-        options = [1, 2, 3]
+
         ans = []
-        indices = {
-            option: [i for i, x in enumerate(colors) if x == option]
-            for option in options
-        }
-        for query in queries:
-            
+
+        idxs = {1: [], 2: [], 3: []}
+
+        for i in range(len(colors)):
+            idxs[colors[i]].append(i)
+
+        for i, c in queries:
+            if not len(idxs[c]):
+                ans.append(-1)
+                continue
+
+            # returns where the second argument (int) would fit in the first (list) without actually inserting it
+            insrt_i = bisect_left(idxs[c], i)
+
+            if insrt_i == 0:
+                ans.append(idxs[c][0] - i)
+            elif insrt_i >= len(idxs[c]):
+                ans.append(i - idxs[c][-1])
+            else:
+                ans.append(
+                    min(
+                        i - idxs[c][insrt_i - 1],
+                        idxs[c][insrt_i] - i,
+                    )
+                )
+
+        return ans
 
 
 solution = Solution()
@@ -54,3 +76,32 @@ print(
     )
 )
 print(solution.shortestDistanceColor(colors=[1, 2], queries=[[0, 3]]))
+
+
+# # works but takes too long
+# class Solution:
+#     def shortestDistanceColor(
+#         self, colors: List[int], queries: List[List[int]]
+#     ) -> List[int]:
+
+#         ans = []
+
+#         idxs = {1: [], 2: [], 3: []}
+
+#         for i in range(len(colors)):
+#             idxs[colors[i]].append(i)
+
+#         for [i, c] in queries:
+
+#             if not len(idxs[c]):
+#                 ans.append(-1)
+#                 continue
+
+#             minimum = float("inf")
+
+#             for idx in idxs[c]:
+#                 minimum = min(minimum, abs(i - idx))
+
+#             ans.append(minimum)
+
+#         return ans
