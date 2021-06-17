@@ -1,9 +1,9 @@
 # Shortest Distance to Target Color
 # You are given an array colors, in which there are three colors: 1, 2 and 3.
 
-# You are also given some queries. Each query consists of two integers i and c, return the shortest distance between the given index i and the target color c. If there is no solution return -1.
-
- 
+# You are also given some queries. Each query consists of two integers i and c, 
+# return the shortest distance between the given index i and the target color c. 
+# If there is no solution return -1.
 
 # Example 1:
 
@@ -18,7 +18,6 @@
 # Input: colors = [1,2], queries = [[0,3]]
 # Output: [-1]
 # Explanation: There is no 3 in the array.
- 
 
 # Constraints:
 
