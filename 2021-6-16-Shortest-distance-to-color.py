@@ -51,7 +51,7 @@ class Solution:
                 ans.append(-1)
                 continue
 
-            # returns where the second argument (int) would fit in the first (list) without actually inserting it
+            # determine where the target index would fit in the list of indices for given color without actually inserting it
             insrt_i = bisect_left(idxs[c], i)
 
             # if it fits below everything, append difference from i to first num in idxs[c]
