@@ -1,4 +1,5 @@
-#
+# This was a practice problem I did with Michael Norton, and then later with Peter Anderson
+
 
 def mergeIntervals(intervals):
     intervals.sort(key=lambda el: el[0])
@@ -8,7 +9,7 @@ def mergeIntervals(intervals):
     for i in range(1, len(intervals)):
 
         cur = intervals[i]
-        
+
         if cur[0] >= ans[-1][0] and cur[0] <= ans[-1][1]:
             if cur[1] > ans[-1][1]:
                 ans[-1][1] = cur[1]
