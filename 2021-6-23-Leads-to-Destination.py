@@ -61,6 +61,7 @@ class Solution:
     def leadsToDestination(
         self, n: int, edges: List[List[int]], source: int, destination: int
     ) -> bool:
+
         m = defaultdict(list)
         for edge in edges:
             m[edge[0]].append(edge[1])
@@ -68,20 +69,20 @@ class Solution:
         visited = set()
         return self.dfs(m, source, destination, visited)
 
-    def dfs(self, m, start, end, visited) -> bool:
-        if start in visited:
+    def dfs(self, m, src, dest, visited) -> bool:
+        if src in visited:
             return False
 
-        if not m[start]:
-            return True if start == end else False
+        if not m[src]:
+            return True if src == dest else False
         else:
             result = True
-            visited.add(start)
+            visited.add(src)
 
-            for node in m[start]:
-                result = result and self.dfs(m, node, end, visited)
+            for node in m[src]:
+                result = result and self.dfs(m, node, dest, visited)
 
-            visited.remove(start)
+            visited.remove(src)
 
             return result
 
@@ -92,7 +93,9 @@ print(
     solution.leadsToDestination(n=3, edges=[[0, 1], [0, 2]], source=0, destination=2)
 )  # false
 print(
-    solution.leadsToDestination(n=3, edges=[[0, 1], [0, 2]], source=0, destination=2)
+    solution.leadsToDestination(
+        n=4, edges=[[0, 1], [0, 3], [1, 2], [2, 1]], source=0, destination=3
+    )
 )  # false
 print(
     solution.leadsToDestination(
@@ -104,3 +107,4 @@ print(
         n=3, edges=[[0, 1], [1, 1], [1, 2]], source=0, destination=2
     )
 )  # false
+print(solution.leadsToDestination(n=2, edges=[], source=0, destination=1))  # false
