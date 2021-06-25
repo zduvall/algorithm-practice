@@ -23,3 +23,5 @@
 # 0 <= startRow < m
 # 0 <= startColumn < n
 
+class Solution:
+    def findPaths(self, m: int, n: int, maxMove: int, startRow: int, startColumn: int) -> int:
