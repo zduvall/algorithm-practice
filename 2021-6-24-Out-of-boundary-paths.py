@@ -24,27 +24,34 @@
 # 0 <= startColumn < n
 
 
+from functools import cache
+
+
 class Solution:
     def findPaths(
         self, m: int, n: int, maxMove: int, startRow: int, startColumn: int
     ) -> int:
+        @cache
         def solve(i, j, maxMove):
-            if maxMove < 0:
-                return 0
-            if i < 0 or i >= m or j < 0 or j >= n:
+            if not (0 <= i < m and 0 <= j < n):
                 return 1
 
-            a = solve(i - 1, j, maxMove - 1)
-            b = solve(i + 1, j, maxMove - 1)
-            c = solve(i, j - 1, maxMove - 1)
-            d = solve(i, j + 1, maxMove - 1)
+            maxMove -= 1
 
-            return a + b + c + d
+            if maxMove < 0:
+                return 0
+
+            return (
+                solve(i - 1, j, maxMove)
+                + solve(i + 1, j, maxMove)
+                + solve(i, j - 1, maxMove)
+                + solve(i, j + 1, maxMove)
+            )
 
         return solve(startRow, startColumn, maxMove) % 1000000007
 
 
 solution = Solution()
 
-print(solution.findPaths(m=2, n=2, maxMove=2, startRow=0, startColumn=0)) # 6
-print(solution.findPaths(m=1, n=3, maxMove=3, startRow=0, startColumn=1)) # 12
+print(solution.findPaths(m=2, n=2, maxMove=2, startRow=0, startColumn=0))  # 6
+print(solution.findPaths(m=1, n=3, maxMove=3, startRow=0, startColumn=1))  # 12
