@@ -42,3 +42,9 @@ class Solution:
             return a + b + c + d
 
         return solve(startRow, startColumn, maxMove) % 1000000007
+
+
+solution = Solution()
+
+print(solution.findPaths(m=2, n=2, maxMove=2, startRow=0, startColumn=0)) # 6
+print(solution.findPaths(m=1, n=3, maxMove=3, startRow=0, startColumn=1)) # 12
