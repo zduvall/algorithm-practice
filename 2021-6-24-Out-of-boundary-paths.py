@@ -55,3 +55,4 @@ solution = Solution()
 
 print(solution.findPaths(m=2, n=2, maxMove=2, startRow=0, startColumn=0))  # 6
 print(solution.findPaths(m=1, n=3, maxMove=3, startRow=0, startColumn=1))  # 12
+print(solution.findPaths(m=40, n=40, maxMove=100, startRow=0, startColumn=1))  # 50909076
