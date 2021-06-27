@@ -48,16 +48,16 @@ Could you solve this efficiently without using extra space?
         Note that the head is guaranteed to be not null, so it contains at least one node.
  * @param {ListNode} head
  */
-const Solution = function(head) {
-    this.count = 0;
-    this.map = {};
-    
-    let cur = head;
-    while(cur){
-        this.map[this.count] = cur.val
-        cur = cur.next
-        this.count++
-    }
+var Solution = function (head) {
+  this.count = 0;
+  this.map = {};
+
+  let cur = head;
+  while (cur) {
+    this.map[this.count] = cur.val;
+    cur = cur.next;
+    this.count++;
+  }
 };
 
 /**
@@ -65,7 +65,7 @@ const Solution = function(head) {
  * @return {number}
  */
 Solution.prototype.getRandom = function () {
-    return this.map[Math.floor(Math.random() * this.count)]
+  return this.map[Math.floor(Math.random() * this.count)];
 };
 
 /**
@@ -73,3 +73,32 @@ Solution.prototype.getRandom = function () {
  * var obj = new Solution(head)
  * var param_1 = obj.getRandom()
  */
+
+// change it to use ES6 classes
+
+/**
+ * @param head The linked list's head.
+        Note that the head is guaranteed to be not null, so it contains at least one node.
+ * @param {ListNode} head
+ */
+class Solution {
+  constructor(head) {
+    this.count = 0;
+    this.map = {};
+
+    let cur = head;
+    while (cur) {
+      this.map[this.count] = cur.val;
+      cur = cur.next;
+      this.count++;
+    }
+  }
+}
+
+/**
+ * Returns a random node's value.
+ * @return {number}
+ */
+Solution.prototype.getRandom = function () {
+  return this.map[Math.floor(Math.random() * this.count)];
+};
