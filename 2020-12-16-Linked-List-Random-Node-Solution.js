@@ -76,11 +76,6 @@ Solution.prototype.getRandom = function () {
 
 // change it to use ES6 classes
 
-/**
- * @param head The linked list's head.
-        Note that the head is guaranteed to be not null, so it contains at least one node.
- * @param {ListNode} head
- */
 class Solution {
   constructor(head) {
     this.count = 0;
@@ -93,12 +88,8 @@ class Solution {
       this.count++;
     }
   }
-}
 
-/**
- * Returns a random node's value.
- * @return {number}
- */
-Solution.prototype.getRandom = function () {
-  return this.map[Math.floor(Math.random() * this.count)];
-};
+  getRandom() {
+    return this.map[Math.floor(Math.random() * this.count)];
+  }
+}
