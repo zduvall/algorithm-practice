@@ -48,7 +48,7 @@ Could you solve this efficiently without using extra space?
         Note that the head is guaranteed to be not null, so it contains at least one node.
  * @param {ListNode} head
  */
-var Solution = function(head) {
+const Solution = function(head) {
     this.count = 0;
     this.map = {};
     
