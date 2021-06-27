@@ -65,10 +65,10 @@ let testArr1 = [-1, 0, 1, 2, -1, -4]
 let testArr2 = [-3, 0, 1, 2, -1, -4, 5, 3]
 let testArr3 = [-4, -2, 1, -5, -4, -4, 4, -2, 0, 4, 0, -2, 3, 1, -5, 0]
 
-// console.log(threeSum(testArr));
-// console.log(threeSum(testArr1));
-// console.log(threeSum(testArr2));
-// console.log(threeSum(testArr3));
+console.log(threeSum(testArr));
+console.log(threeSum(testArr1));
+console.log(threeSum(testArr2));
+console.log(threeSum(testArr3));
 
 // here's attempt #2
 
